@@ -1,0 +1,251 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Child;
+use App\Models\SystemDetail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class AdminController extends Controller
+{
+    public function index()
+    {
+        return view('admin.index');
+    }
+    public function newchild_index()
+    {
+        return view('admin.newchild.index');
+    }
+
+    public function newchild_store(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'dob' => 'required|date',
+            'status' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'hobbies' => 'required|string|max:255',
+            'current_grade' => 'required|string|max:255',
+            'aspirations' => 'required|string|max:255',
+        ]);
+
+        // Check if file upload was successful
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Upload the image file
+            $imagePath = $request->file('image')->store('uploads', 'public');
+
+            // Check if the file exists in the storage
+            if (Storage::disk('public')->exists($imagePath)) {
+                try {
+                    // Create a new child record
+                    $child = Child::create([
+                        'name' => $request->input('name'),
+                        'dob' => $request->input('dob'),
+                        'status' => $request->input('status'),
+                        'img_url' => $imagePath,
+                    ]);
+
+                    // Create a new child_details record with key-value pairs
+                    $child->details()->createMany([
+                        ['key' => 'hobbies', 'value' => $request->input('hobbies')],
+                        ['key' => 'current_grade', 'value' => $request->input('current_grade')],
+                        ['key' => 'aspirations', 'value' => $request->input('aspirations')],
+                    ]);
+
+                    // Redirect back to a success page or somewhere else
+                    return redirect()->route('newchild.index')->with('success', 'Child record created successfully!');
+                } catch (\Exception $e) {
+                    // If an error occurs, delete the uploaded image
+                    Storage::disk('public')->delete($imagePath);
+
+                    // Redirect back with error message
+                    return redirect()->route('newchild.index')
+                        ->with('error', 'Failed to create child record: ' . $e->getMessage())
+                        ->withInput($request->except('image'));
+                }
+            } else {
+                // If the file doesn't exist in storage, redirect back with error message
+                return redirect()->route('newchild.index')
+                    ->with('error', 'Failed to upload image. Please try again.')
+                    ->withInput($request->except('image'));
+            }
+        } else {
+            // If file upload failed, redirect back with error message
+            return redirect()->route('newchild.index')
+                ->with('error', 'Failed to upload image. Please try again.')
+                ->withInput($request->except('image'));
+        }
+    }
+
+    public function children_list()
+    {
+        // Retrieve a list of children with their details
+        $children = Child::with('details')->get();
+
+        // Pass the data to a view
+        return view('admin.children.index', compact('children'));
+    }
+
+
+    public function child_edit($id)
+    {
+        $child = Child::findOrFail($id);
+        return view('admin.children.edit', compact('child'));
+    }
+
+    public function child_delete($id)
+    {
+        try {
+            $child = Child::findOrFail($id);
+
+            // Delete the child's image from storage if it exists
+            if (Storage::disk('public')->exists($child->img_url)) {
+                Storage::disk('public')->delete($child->img_url);
+            }
+
+            // Delete the child and associated details
+            $child->details()->delete();
+            $child->delete();
+
+            return redirect()->route('children.index')->with('success', 'Child deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->route('children.index')->with('error', 'Failed to delete child.');
+        }
+    }
+
+    public function child_update(Request $request, $id)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'dob' => 'required|date',
+            'status' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'hobbies' => 'required|string|max:255',
+            'current_grade' => 'required|string|max:255',
+            'aspirations' => 'required|string|max:255',
+        ]);
+
+        // Find the child record to update
+        $child = Child::findOrFail($id);
+
+        // Check if a new image was uploaded
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Delete the previous image if it exists
+            if ($child->img_url && Storage::disk('public')->exists($child->img_url)) {
+                Storage::disk('public')->delete($child->img_url);
+            }
+
+            // Upload the new image
+            $imagePath = $request->file('image')->store('uploads', 'public');
+            $child->img_url = $imagePath;
+        }
+
+        // Update the child record
+        $child->name = $request->input('name');
+        $child->dob = $request->input('dob');
+        $child->status = $request->input('status');
+        $child->save();
+
+        // Update the child details dynamically
+        $detailsToUpdate = [
+            'hobbies' => $request->input('hobbies'),
+            'current_grade' => $request->input('current_grade'),
+            'aspirations' => $request->input('aspirations'),
+            // Add more details here as needed
+        ];
+
+        foreach ($detailsToUpdate as $key => $value) {
+            $child->details()->updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        // Redirect back to a success page or somewhere else
+        return redirect()->route('children.index')->with('success', 'Child record updated successfully!');
+    }
+
+    public function showSystemDetails()
+    {
+        // Fetch all system details
+        $systemDetails = SystemDetail::all();
+
+        // Pass the system details to the view
+        return view('admin.system_details.index', compact('systemDetails'));
+    }
+
+    public function addSystemDetails()
+    {
+        return view('admin.system_details.add');
+    }
+    public function storeSystemDetails(Request $request)
+    {  // Validate the incoming request data
+        $request->validate([
+            'key' => 'required|string|max:255',
+            'value' => 'required|string',
+        ]);
+
+        // Create a new system detail record
+        SystemDetail::create([
+            'key' => $request->input('key'),
+            'value' => $request->input('value'),
+        ]);
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', 'System detail created successfully!');
+    }
+
+    public function editSystemDetails($id)
+    {
+        // Find the system detail by id
+        $systemDetail = SystemDetail::find($id);
+
+        // Check if the system detail exists
+        if (!$systemDetail) {
+            return redirect()->back()->with('error', 'System detail not found.');
+        }
+
+        // Pass the $systemDetail variable to the view
+        return view('admin.system_details.edit', compact('systemDetail'));
+    }
+    public function deleteSystemDetails($id)
+    {
+        // Find the system detail by id
+        $systemDetail = SystemDetail::find($id);
+
+        // If the system detail exists, delete it
+        if ($systemDetail) {
+            $systemDetail->delete();
+            return redirect()->back()->with('success', 'System detail deleted successfully.');
+        }
+
+        // If the system detail does not exist, return an error message
+        return redirect()->back()->with('error', 'System detail not found.');
+    }
+    
+    public function updateSystemDetails(Request $request, $id)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'key' => 'required|string|max:255',
+            'value' => 'required|string',
+        ]);
+
+        // Find the system detail by id
+        $systemDetail = SystemDetail::find($id);
+
+        // Check if the system detail exists
+        if (!$systemDetail) {
+            return redirect()->back()->with('error', 'System detail not found.');
+        }
+
+        // Update the system detail with the new data
+        $systemDetail->update([
+            'key' => $request->input('key'),
+            'value' => $request->input('value'),
+        ]);
+
+        // Redirect back or return a response as needed
+        return redirect()->back()->with('success', 'System detail updated successfully!');
+    }
+}
