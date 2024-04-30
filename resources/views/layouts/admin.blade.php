@@ -36,8 +36,7 @@
             <div class="mm-sidebar-logo d-flex align-items-center justify-content-between">
                 <a href="index.html" class="header-logo">
                     <img src="{{ asset('../assets/img/logo.png') }}" class="img-fluid rounded-normal light-logo" alt="logo">
-                    <img src="{{ asset('../assets/img/logo.png') }}" class="img-fluid rounded-normal darkmode-logo"
-                        alt="logo">
+                    <img src="{{ asset('../assets/img/logo.png') }}" class="img-fluid rounded-normal darkmode-logo" alt="logo">
                 </a>
                 <div class="side-menu-bt-sidebar">
                     <i class="fa fa-bars  wrapper-menu"></i>
@@ -123,7 +122,7 @@
                                 <li class>
                                     <a href="{{ route('admin.system_details.index') }}" class="svg-icon">
                                         <i class="fa fa-asterisk"></i>
-                                        <span>Basic List</span>
+                                        <span>System Variable List</span>
                                     </a>
                                 </li>
                                 <li class>
@@ -135,6 +134,36 @@
 
                                
                                
+                            </ul>
+                        </li>
+                        <li class>
+                            <a href="#users" class="collapsed svg-icon" data-toggle="collapse"
+                                aria-expanded="false">
+                                <i class>
+                                    <svg class="svg-icon" id="mm-extra-1" width="20" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                                    </svg>
+                                </i>
+                                <span class="ml-2">Users</span>
+                                <i class="fa fa-arrow-right mm-arrow-right arrow-active"></i>
+                                <i class="fa fa-arrow-down   mm-arrow-right arrow-hover"></i>
+                            </a>
+                            <ul id="users" class="submenu collapse" data-parent="#mm-sidebar-toggle">
+                                <li class>
+                                    <a href="{{ route('admin.user.index') }}" class="svg-icon">
+                                        <i class="fa fa-asterisk"></i>
+                                        <span>All Users List</span>
+                                    </a>
+                                </li>
+                                <li class>
+                                    <a href="{{ route('admin.user.create') }}" class="svg-icon">
+                                        <i class="fa fa-asterisk"></i>
+                                        <span>New User</span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </li>
                     </ul>
@@ -149,8 +178,8 @@
                     <div class="mm-navbar-logo d-flex align-items-center justify-content-between">
                         <i class="ri-menu-line wrapper-menu"></i>
                         <a href="index.html" class="header-logo">
-                            <img src="../assets/images/logo.png" class="img-fluid rounded-normal" alt="logo">
-                            <h4 class="ml-1"><b>SimpleD</b></h4>
+                            <img src="{{ asset('../assets/img/logo.png') }}" class="img-fluid rounded-normal darkmode-logo" alt="logo">
+                            <h4 class="ml-1"><b>TEULE KENYA</b></h4>
                         </a>
                     </div>
                     <div class="mm-search-bar device-search m-auto">

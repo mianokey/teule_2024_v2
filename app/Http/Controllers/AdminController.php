@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Child;
 use App\Models\SystemDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -248,4 +250,56 @@ class AdminController extends Controller
         // Redirect back or return a response as needed
         return redirect()->back()->with('success', 'System detail updated successfully!');
     }
+
+    public function user_index()
+    {
+        return view('admin.user.index');
+    }
+
+    public function user_create()
+    {
+        return view('admin.user.create');
+    }
+
+    public function user_store(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'position' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+    
+        try {
+            // Create a new user record
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+            ]);
+    
+            // Check if a new image was uploaded
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                // Upload the new image
+                $imagePath = $request->file('image')->store('uploads', 'public');
+                
+                // Create or update the user details with the image URL
+                $user->details()->updateOrCreate(['key' => 'img_url'], ['value' => $imagePath]);
+            }
+    
+            // Create or update other user details (e.g., position)
+            $user->details()->updateOrCreate(['key' => 'position'], ['value' => $request->input('position')]);
+    
+            // Redirect to an appropriate page after successful registration
+            return redirect()->route('admin.users.create')->with('success', 'User registered successfully!');
+        } catch (\Exception $e) {
+            // If an error occurs during user creation, redirect back with error message
+            return redirect()->back()->withInput()->with('error', 'Failed to register user: ' . $e->getMessage());
+        }
+    }
+    
+
+    
 }

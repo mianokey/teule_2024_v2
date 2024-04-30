@@ -12,8 +12,6 @@
 ## END OF app/Models/UserDetail.php
 ## database/migrations/2024_04_19_083915_create_user_details_table.php
 ## END OF database/migrations/2024_04_19_083915_create_user_details_table.php
-## app/Models/User.php
-## END OF app/Models/User.php
 ## database/migrations/2024_04_19_085300_create_children_details_table.php
 ## END OF database/migrations/2024_04_19_085300_create_children_details_table.php
 ## resources/views/admin/index.blade.php
@@ -36,8 +34,6 @@
 ## END OF app/Models/Child.php
 ## resources/views/components/message.blade.php
 ## END OF resources/views/components/message.blade.php
-## resources/views/sponsorship.blade.php
-## END OF resources/views/sponsorship.blade.php
 ## .env
 ## END OF .env
 ## storage/logs/laravel.log
@@ -46,8 +42,6 @@
 ## END OF c:\My Web Sites\teule_admin\meetmighty.com\dashboards\simpled\html\backend\table-data.html
 ## c:\My Web Sites\teule_admin\meetmighty.com\dashboards\simpled\html\backend\table-data.html
 ## END OF c:\My Web Sites\teule_admin\meetmighty.com\dashboards\simpled\html\backend\table-data.html
-## resources/views/admin/children/index.blade.php
-## END OF resources/views/admin/children/index.blade.php
 ## database/migrations/2024_04_19_085131_create_children_table.php
 ## END OF database/migrations/2024_04_19_085131_create_children_table.php
 ## resources/views/admin/children/edit.blade.php
@@ -64,21 +58,29 @@
 ## END OF app/Models/SystemDetail.php
 ## resources/views/admin/system_details/add.blade.php
 ## END OF resources/views/admin/system_details/add.blade.php
-## resources/views/layouts/admin.blade.php
-## END OF resources/views/layouts/admin.blade.php
-## resources/views/admin/newchild/index.blade.php
-## END OF resources/views/admin/newchild/index.blade.php
 ## resources/views/admin/system_details/edit.blade.php
 ## END OF resources/views/admin/system_details/edit.blade.php
-## resources/views/admin/system_details/index.blade.php
-## END OF resources/views/admin/system_details/index.blade.php
-## routes/web.php
-## END OF routes/web.php
-## app/Http/Controllers/AdminController.php
-## END OF app/Http/Controllers/AdminController.php
 ## app/Http/Controllers/HomeController.php
 ## END OF app/Http/Controllers/HomeController.php
-
 ## resources/views/index.blade.php
-
 ## END OF resources/views/index.blade.php
+## resources/views/admin/newchild/index.blade.php
+## END OF resources/views/admin/newchild/index.blade.php
+## resources/views/admin/children/index.blade.php
+## END OF resources/views/admin/children/index.blade.php
+## resources/views/admin/system_details/index.blade.php
+## END OF resources/views/admin/system_details/index.blade.php
+## app/Models/User.php
+## END OF app/Models/User.php
+## resources/views/layouts/admin.blade.php
+## END OF resources/views/layouts/admin.blade.php
+## routes/web.php
+## END OF routes/web.php
+## resources/views/admin/user/create.blade.php
+## END OF resources/views/admin/user/create.blade.php
+## app/Http/Controllers/AdminController.php
+## END OF app/Http/Controllers/AdminController.php
+
+## resources/views/sponsorship.blade.php
+
+## END OF resources/views/sponsorship.blade.php

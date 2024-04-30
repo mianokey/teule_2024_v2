@@ -59,7 +59,7 @@ use Carbon\Carbon;
         <div class="popover-content-inner">
           <div class="row">
             <div class="col-md-4">
-              <img src="{{ asset($child->img_url) }}" alt="Profile Image">
+              <img src="{{ asset('storage/' . $child->img_url) }}" alt="Profile Image">
             </div>
             <div class="col-md-8">
               <h5 class="title"><b><u>Meet {{ Str::ucfirst(strtolower($child->name)) }}</u></b></h5>

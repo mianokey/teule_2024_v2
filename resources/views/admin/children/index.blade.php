@@ -3,11 +3,11 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title">Add New Child</h6>
+            <h6 class="card-title">All Children List</h6>
         </div>
         <x-message></x-message>
 
-        <div class="table-responsive col-md-12">
+        <div class="table-responsive p-4 col-md-12">
             <table id="datatable" class="table data-table table-striped table-bordered">
                 <thead>
                     <tr>

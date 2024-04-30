@@ -9,9 +9,10 @@
         </div>
         <x-message></x-message>
         <div class="card-body">
-            <table class="table table-bordered">
+            <table id="datatable" class="table data-table table-striped table-bordered">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Key</th>
                         <th>Value</th>
                         <th>Actions</th>
@@ -20,6 +21,7 @@
                 <tbody>
                     @foreach ($systemDetails as $systemDetail)
                         <tr>
+                            <td>{{ $systemDetail->id }}</td>
                             <td>{{ $systemDetail->key }}</td>
                             <td>{{ $systemDetail->value }}</td>
                             <td>

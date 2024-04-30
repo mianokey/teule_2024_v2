@@ -57,6 +57,11 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/children/{id}/edit', [AdminController::class, 'child_edit'])->name('child.edit.index');
     Route::put('children/{id}/update',[AdminController::class, 'child_update'])->name('child_update');
     Route::delete('/children/{id}', [AdminController::class, 'child_delete'])->name('child_delete');
+
+    //system user routes
+    Route::get('/user', [AdminController::class, 'user_index'])->name('admin.user.index');
+    Route::get('/user/create', [AdminController::class, 'user_create'])->name('admin.user.create');
+    Route::post('/user/store', [AdminController::class, 'user_store'])->name('admin.user.store');
 });
 Route::middleware(['auth'])->prefix('admin/system')->group(function () {
     Route::get('/show', [AdminController::class, 'showSystemDetails'])->name('admin.system_details.index');
