@@ -59,7 +59,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::delete('/children/{id}', [AdminController::class, 'child_delete'])->name('child_delete');
 
     //system user routes
-    Route::get('/user', [AdminController::class, 'user_index'])->name('admin.user.index');
+    Route::get('/users', [AdminController::class, 'user_index'])->name('admin.user.index');
     Route::get('/user/create', [AdminController::class, 'user_create'])->name('admin.user.create');
     Route::post('/user/store', [AdminController::class, 'user_store'])->name('admin.user.store');
 });

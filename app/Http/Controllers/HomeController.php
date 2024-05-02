@@ -81,7 +81,7 @@ class HomeController extends Controller
     }
     public function board()
     {
-        $members = User::where(function ($query) {
+        $members = User::with('details')->where(function ($query) {
             $query->where('position', 'like', '%board%')
                 ->orWhere('position', 'like', '%founder%')
                 ->orWhere('position', 'like', '%director%');

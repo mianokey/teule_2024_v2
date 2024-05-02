@@ -60,8 +60,6 @@
 ## END OF resources/views/admin/system_details/add.blade.php
 ## resources/views/admin/system_details/edit.blade.php
 ## END OF resources/views/admin/system_details/edit.blade.php
-## app/Http/Controllers/HomeController.php
-## END OF app/Http/Controllers/HomeController.php
 ## resources/views/index.blade.php
 ## END OF resources/views/index.blade.php
 ## resources/views/admin/newchild/index.blade.php
@@ -74,13 +72,19 @@
 ## END OF app/Models/User.php
 ## resources/views/layouts/admin.blade.php
 ## END OF resources/views/layouts/admin.blade.php
-## routes/web.php
-## END OF routes/web.php
 ## resources/views/admin/user/create.blade.php
 ## END OF resources/views/admin/user/create.blade.php
 ## app/Http/Controllers/AdminController.php
 ## END OF app/Http/Controllers/AdminController.php
-
 ## resources/views/sponsorship.blade.php
-
 ## END OF resources/views/sponsorship.blade.php
+## routes/web.php
+## END OF routes/web.php
+## app/Http/Controllers/HomeController.php
+## END OF app/Http/Controllers/HomeController.php
+## .gitignore
+## END OF .gitignore
+
+## public/storage/.gitignore
+
+## END OF public/storage/.gitignore
