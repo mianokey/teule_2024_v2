@@ -64,12 +64,15 @@ use Carbon\Carbon;
             <div class="col-md-8">
               <h5 class="title"><b><u>Meet {{ Str::ucfirst(strtolower($child->name)) }}</u></b></h5>
               <p><b>Date of Birth:</b> {{ $child->dob }}</p>
-              <h6><b>Other Details:</b></h6>
-              {{-- <ul>
-                @foreach($child_details as $detail)
-                <li><b>{{ $detail->key }}:</b> {{ $detail->value }}</li>
-                @endforeach
-              </ul> --}}
+              <p><b>Age:</b> {{ $child->age }}</p>
+              <h6><b><u>Other Details:</u></b></h6>
+              @if ($child->details)
+                    @foreach ($child->details as $detail)
+                    <p><b>{{ $detail->key }}:</b> {{ $detail->value }}</p>
+                    @endforeach
+                @else
+                    <p>no details </p>
+                @endif
             </div>
           </div>
           <a href="{{ route('donate') }}"><button class="common-btn">Sponsor {{ Str::ucfirst(strtolower($child->name)) }}</button></a>

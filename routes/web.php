@@ -70,4 +70,5 @@ Route::middleware(['auth'])->prefix('admin/system')->group(function () {
     Route::get('/edit/{id}', [AdminController::class, 'editSystemDetails'])->name('admin.system_details.edit');
     Route::delete('/destroy/{id}', [AdminController::class, 'deleteSystemDetails'])->name('admin.system_details.destroy');
     Route::put('/update/{id}', [AdminController::class, 'updateSystemDetails'])->name('admin.system_details.update');
+    
 });

@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h6 class="card-title">ALL CHILDREN LIST</h6>
+            <h6 class="card-title">EDIT <b>{{ $child->name }} </b>INFO</h6>
         </div>
         <x-message></x-message>
         <div class="card-body">
@@ -34,7 +34,7 @@
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="current_grade" name="current_grade" value="{{ $child->details->where('key', 'current_grade')->first()->value ?? '' }}" placeholder="Current Grade">
-                            <label for="current_grade">Current Grade</label>
+                            <label for="current grade">Current Grade DFDF</label>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                           <img src="{{ asset('storage/' . $child->img_url) }}" height="90" alt="{{ $child->name }} image" />
+                            <img src="{{ url('storage/' . $child->img_url) }}" height="90" alt="{{ $child->name }} image" />
                              </div>
                     </div>
                     <div class="col-md-6">

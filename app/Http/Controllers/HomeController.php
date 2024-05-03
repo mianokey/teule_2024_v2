@@ -27,7 +27,7 @@ class HomeController extends Controller
         $events = Event::all()->sortBy('date_from');
         return view('index', compact('systemDetails', 'needItems', 'events'));
     }
-    
+
     public function donate()
     {
         return view('donate');
@@ -50,21 +50,21 @@ class HomeController extends Controller
     {
         // Get the path to the PDF file
         $filePath = 'uploads/' . $documentName;
-    
+
         // Check if the file exists in storage
         if (Storage::disk('public')->exists($filePath)) {
             // Construct the URL to the PDF file
             $pdfUrl = asset('storage/' . $filePath);
-    
+
             // Render the view with the PDF URL and document name
             return view('readmore', compact('pdfUrl', 'documentName'));
         } else {
             // If the file doesn't exist, return a 404 error
-            $pdfUrl='';
-              return view('readmore', compact('pdfUrl', 'documentName'));
+            $pdfUrl = '';
+            return view('readmore', compact('pdfUrl', 'documentName'));
         }
     }
-    
+
 
 
     public function team()
@@ -135,42 +135,38 @@ class HomeController extends Controller
 
     public function sponsorship()
     {
-        // Load children where status is not "Inactive" with their sponsor count
+        // Load children with their sponsor count and all details
         $children = Child::whereNotIn('status', ['Inactive'])
-            ->leftJoin('children_details', function ($join) {
-                $join->on('children.id', '=', 'children_details.child_id')
-                    ->where('children_details.key', '=', 'sponsor');
-            })
-            ->select('children.*', DB::raw('COUNT(children_details.id) as sponsor_count'))
-            ->groupBy('children.id')
-            ->orderBy('sponsor_count', 'asc')
+            ->with(['details', 'sponsorDetailsCount', 'otherDetails'])
             ->paginate(8);
-
+    
+        // // Log child data
+        // foreach ($children as $child) {
+        //     \Log::info('Child Data:', $child->toArray());
+        // }
+    
         // Calculate age for each child
         foreach ($children as $child) {
             $dob = Carbon::parse($child->dob);
             $now = Carbon::now();
-
             // Calculate difference
             $ageDiff = $now->diff($dob);
-
             // Format age based on the difference
-            if ($ageDiff->y > 0) {
+            if ($ageDiff->y > 1) {
                 $age = $ageDiff->format('%y years old');
+            }elseif ($ageDiff->y == 1) {
+                $age = $ageDiff->format('%y year old');
             } elseif ($ageDiff->m > 0) {
                 $age = $ageDiff->format('%m months old');
             } else {
                 $age = $ageDiff->format('%d days old');
             }
-
             $child->age = $age;
         }
-
+    
         return view('sponsorship', compact('children'));
     }
-
-
-
+    
 
     public function apply_intern()
     {
