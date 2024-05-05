@@ -62,6 +62,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/users', [AdminController::class, 'user_index'])->name('admin.user.index');
     Route::get('/user/create', [AdminController::class, 'user_create'])->name('admin.user.create');
     Route::post('/user/store', [AdminController::class, 'user_store'])->name('admin.user.store');
+    Route::get('/user/{id}/edit', [AdminController::class, 'user_edit'])->name('admin.user.edit');
+    Route::patch('/user/update/{id}', [AdminController::class, 'user_update'])->name('admin.user.update');
+    Route::delete('/user/{id}/delete', [AdminController::class, 'user_delete'])->name('admin.user.delete');
 });
 Route::middleware(['auth'])->prefix('admin/system')->group(function () {
     Route::get('/show', [AdminController::class, 'showSystemDetails'])->name('admin.system_details.index');
@@ -70,5 +73,5 @@ Route::middleware(['auth'])->prefix('admin/system')->group(function () {
     Route::get('/edit/{id}', [AdminController::class, 'editSystemDetails'])->name('admin.system_details.edit');
     Route::delete('/destroy/{id}', [AdminController::class, 'deleteSystemDetails'])->name('admin.system_details.destroy');
     Route::put('/update/{id}', [AdminController::class, 'updateSystemDetails'])->name('admin.system_details.update');
-    
+
 });

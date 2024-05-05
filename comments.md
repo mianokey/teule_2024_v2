@@ -8,8 +8,6 @@
 ## END OF teule/app/Http/Controllers/HomeController.php
 ## c:\Users\rmo\AppData\Roaming\Code\Workspaces\1713337612551\workspace.json
 ## END OF c:\Users\rmo\AppData\Roaming\Code\Workspaces\1713337612551\workspace.json
-## app/Models/UserDetail.php
-## END OF app/Models/UserDetail.php
 ## database/migrations/2024_04_19_083915_create_user_details_table.php
 ## END OF database/migrations/2024_04_19_083915_create_user_details_table.php
 ## database/migrations/2024_04_19_085300_create_children_details_table.php
@@ -68,8 +66,6 @@
 ## END OF .gitignore
 ## public/storage/.gitignore
 ## END OF public/storage/.gitignore
-## routes/web.php
-## END OF routes/web.php
 ## resources/views/admin/newchild/index.blade.php
 ## END OF resources/views/admin/newchild/index.blade.php
 ## app/Models/Child.php
@@ -78,15 +74,23 @@
 ## END OF resources/views/sponsorship.blade.php
 ## resources/views/admin/children/index.blade.php
 ## END OF resources/views/admin/children/index.blade.php
+## resources/views/admin/children/edit.blade.php
+## END OF resources/views/admin/children/edit.blade.php
+## resources/views/admin/user/index.blade.php
+## END OF resources/views/admin/user/index.blade.php
+## resources/views/admin/user/edit.blade.php
+## END OF resources/views/admin/user/edit.blade.php
+## routes/web.php
+## END OF routes/web.php
+## app/Http/Controllers/AdminController.php
+## END OF app/Http/Controllers/AdminController.php
+## app/Models/UserDetail.php
+## END OF app/Models/UserDetail.php
 ## app/Http/Controllers/HomeController.php
 ## END OF app/Http/Controllers/HomeController.php
 ## storage/logs/laravel.log
 ## END OF storage/logs/laravel.log
 
+## resources/views/board.blade.php
 
-## app/Http/Controllers/AdminController.php
-## END OF app/Http/Controllers/AdminController.php
-
-## resources/views/admin/children/edit.blade.php
-
-## END OF resources/views/admin/children/edit.blade.php
+## END OF resources/views/board.blade.php

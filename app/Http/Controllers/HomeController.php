@@ -9,6 +9,7 @@ use App\Models\Latest;
 use App\Models\NeedItem;
 use App\Models\SystemDetail;
 use App\Models\User;
+use App\Models\UserDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -65,29 +66,76 @@ class HomeController extends Controller
         }
     }
 
+    public function board()
+    {// Fetch users based on position from user_details table
+    $members = User::whereHas('details', function ($query) {
+        $query->where('key', 'position')
+            ->where(function ($subQuery) {
+                $subQuery->where('value', 'like', '%board%')
+                    ->orWhere('value', 'like', '%director%')
+                    ->orWhere('value', 'like', '%founder%');
+            });
+    })
+    ->get();
+    
+        // Process the retrieved data
+        $processedMembers = [];
+        foreach ($members as $member) {
+            $userData = $member->toArray();
+    
+            // Extract user details into a key-value array
+            $userDetails = $member->details->pluck('value', 'key')->toArray();
+    
+            // Append user details to user data
+            foreach ($userDetails as $key => $value) {
+                $userData[$key] = $value;
+            }
+    
+            // Add user data to processed members array
+            $processedMembers[] = $userData;
+        }
+    
+        // Log the processed members data
+        \Log::info('Processed Members Data:', $processedMembers);
+    
+        return view('board', compact('processedMembers'));
+    }
+    
+    
 
+    
 
+     
     public function team()
     {
-        $members = User::where('position', 'not like', '%director%')
-            ->where('position', 'not like', '%board%')
-            ->get();
+        // Get user IDs with positions containing 'director', 'founder', or 'board' (case insensitive)
+        $directorFounderBoardUserIds = UserDetail::where('key', 'position')
+            ->where(function ($query) {
+                $query->where('value', 'like', '%director%')
+                    ->orWhere('value', 'like', '%founder%')
+                    ->orWhere('value', 'like', '%board%');
+            })
+            ->pluck('user_id')
+            ->all(); // Convert collection to array
+    
+        if (empty($directorFounderBoardUserIds)) {
+            // If no 'director', 'founder', or 'board' positions found, return an empty array
+            $members = [];
+        } else {
+            // Get team members excluding those with 'director', 'founder', or 'board' positions
+            $members = User::whereNotIn('id', $directorFounderBoardUserIds)->get();
+        }
+    
         return view('team', compact('members'));
     }
+    
     public function sustainability()
     {
 
         return view('sustainability');
     }
-    public function board()
-    {
-        $members = User::with('details')->where(function ($query) {
-            $query->where('position', 'like', '%board%')
-                ->orWhere('position', 'like', '%founder%')
-                ->orWhere('position', 'like', '%director%');
-        })->get();
-        return view('board', compact('members'));
-    }
+
+
     public function contact()
     {
         return view('contact');
@@ -139,12 +187,12 @@ class HomeController extends Controller
         $children = Child::whereNotIn('status', ['Inactive'])
             ->with(['details', 'sponsorDetailsCount', 'otherDetails'])
             ->paginate(8);
-    
+
         // // Log child data
         // foreach ($children as $child) {
         //     \Log::info('Child Data:', $child->toArray());
         // }
-    
+
         // Calculate age for each child
         foreach ($children as $child) {
             $dob = Carbon::parse($child->dob);
@@ -154,7 +202,7 @@ class HomeController extends Controller
             // Format age based on the difference
             if ($ageDiff->y > 1) {
                 $age = $ageDiff->format('%y years old');
-            }elseif ($ageDiff->y == 1) {
+            } elseif ($ageDiff->y == 1) {
                 $age = $ageDiff->format('%y year old');
             } elseif ($ageDiff->m > 0) {
                 $age = $ageDiff->format('%m months old');
@@ -163,10 +211,10 @@ class HomeController extends Controller
             }
             $child->age = $age;
         }
-    
+
         return view('sponsorship', compact('children'));
     }
-    
+
 
     public function apply_intern()
     {
