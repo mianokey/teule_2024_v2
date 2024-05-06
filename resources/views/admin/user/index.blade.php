@@ -35,9 +35,8 @@
                             $imgUrl = $user->details->where('key', 'img_url')->first();
                         @endphp
 
-                        @if($imgUrl)
-                        <img src="{{ url('storage/' . $imgUrl->value) }}" height="90" alt="{{ $user->name }} image">
-                        @endif
+                        <img src="{{ asset($imgUrl->value) }}" height="90" alt="{{ $user->name }} image">
+
                     </td>
                     <td>
                         <button class="btn btn-info btn-sm mr-2 view-details-btn" data-name="{{ $user->name }}"

@@ -42,6 +42,8 @@ class AdminController extends Controller
             // Check if the file exists in the storage
             if (Storage::disk('public')->exists($imagePath)) {
                 try {
+
+                    
                     // Create a new child record
                     $child = Child::create([
                         'name' => $request->input('name'),
@@ -58,27 +60,28 @@ class AdminController extends Controller
                     ]);
 
                     // Redirect back to a success page or somewhere else
-                    return redirect()->route('newchild.index')->with('success', 'Child record created successfully!');
+                    return redirect()->back()->with('success', 'Child record created successfully!');
                 } catch (\Exception $e) {
                     // If an error occurs, delete the uploaded image
                     Storage::disk('public')->delete($imagePath);
-
+                    // Log the processed members data
+                    \Log::info('Failed storing image'. $e->getMessage() );
                     // Redirect back with error message
-                    return redirect()->route('newchild.index')
-                        ->with('error', 'Failed to create child record: ' . $e->getMessage())
-                        ->withInput($request->except('image'));
+                    return redirect()->back()->withInput($request->except('image'))->with('error', 'Failed to create child record: ' . $e->getMessage());
+
                 }
             } else {
                 // If the file doesn't exist in storage, redirect back with error message
-                return redirect()->route('newchild.index')
-                    ->with('error', 'Failed to upload image. Please try again.')
-                    ->withInput($request->except('image'));
+                // Redirect back with error message
+                  return redirect()->back()->withInput($request->except('image'))
+                ->with('error', 'Failed to upload image. Please try again.');
+
             }
         } else {
             // If file upload failed, redirect back with error message
-            return redirect()->route('newchild.index')
-                ->with('error', 'Failed to upload image. Please try again.')
-                ->withInput($request->except('image'));
+            // Redirect back with error message
+            return redirect()->back()->withInput($request->except('image'))
+            ->with('error', 'Failed to upload image. Please try again.');
         }
     }
 

@@ -114,29 +114,47 @@ class HomeController extends Controller
         return view('board', compact('processedMembers'));
     }
     
-     
     public function team()
     {
-        // Get user IDs with positions containing 'director', 'founder', or 'board' (case insensitive)
-        $directorFounderBoardUserIds = UserDetail::where('key', 'position')
-            ->where(function ($query) {
-                $query->where('value', 'like', '%director%')
-                    ->orWhere('value', 'like', '%founder%')
-                    ->orWhere('value', 'like', '%board%');
-            })
-            ->pluck('user_id')
-            ->all(); // Convert collection to array
-    
-        if (empty($directorFounderBoardUserIds)) {
-            // If no 'director', 'founder', or 'board' positions found, return an empty array
-            $members = [];
-        } else {
-            // Get team members excluding those with 'director', 'founder', or 'board' positions
-            $members = User::whereNotIn('id', $directorFounderBoardUserIds)->get();
+        // Fetch users who do not have positions containing the specified strings
+        $members = User::whereDoesntHave('details', function ($query) {
+            $query->where('key', 'position')
+                ->where(function ($subQuery) {
+                    $subQuery->where('value', 'like', '%board%')
+                             ->orWhere('value', 'like', '%director%')
+                             ->orWhere('value', 'like', '%founder%');
+                });
+        })
+        ->get();
+        
+        // Check if there are members
+        if ($members->isEmpty()) {
+            // No members found, return with a message or redirect
+            $errorMessage = 'Unable to fetch team member details';
+            return view('error', compact('errorMessage'));
         }
     
-        return view('team', compact('members'));
+        // Process the retrieved data
+        $processedMembers = [];
+        foreach ($members as $member) {
+            $userData = $member->toArray();
+    
+            // Extract user details into a key-value array
+            $userDetails = $member->details->pluck('value', 'key')->toArray();
+    
+            // Append user details to user data
+            foreach ($userDetails as $key => $value) {
+                $userData[$key] = $value;
+            }
+    
+            // Add user data to processed members array
+            $processedMembers[] = $userData;
+        }
+        return view('team', compact('processedMembers'));
     }
+    
+    
+   
     
     public function sustainability()
     {
@@ -189,19 +207,18 @@ class HomeController extends Controller
     }
 
 
-
+    
     public function sponsorship()
     {
-        // Load children with their sponsor count and all details
+        // Load children with their sponsor count and all details, ordered by sponsor count
         $children = Child::whereNotIn('status', ['Inactive'])
+            ->withCount(['details as sponsor_count' => function ($query) {
+                $query->where('key', 'sponsor');
+            }])
             ->with(['details', 'sponsorDetailsCount', 'otherDetails'])
-            ->paginate(8);
-
-        // // Log child data
-        // foreach ($children as $child) {
-        //     \Log::info('Child Data:', $child->toArray());
-        // }
-
+            ->orderBy('sponsor_count', 'asc')
+            ->paginate(10);
+    
         // Calculate age for each child
         foreach ($children as $child) {
             $dob = Carbon::parse($child->dob);
@@ -220,10 +237,11 @@ class HomeController extends Controller
             }
             $child->age = $age;
         }
-
+    
         return view('sponsorship', compact('children'));
     }
-
+    
+    
 
     public function apply_intern()
     {

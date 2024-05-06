@@ -51,8 +51,8 @@
                                 <option value="">Select One...</option>
                                 <option value="Inactive" {{ $child->status == 'Inactive' ? 'selected' : '' }}>Inactive (NOT IN CURRENT POPULATION)</option>
                                 <option value="Residential" {{ $child->status == 'Residential' ? 'selected' : '' }}>Residential</option>
-                                <option value="Hb" {{ $child->status == 'Hb' ? 'selected' : '' }}>HomeBased</option>
-                                <option value="Temp" {{ $child->status == 'Temp' ? 'selected' : '' }}>Temporal Placement</option>
+                                <option value="Home Based Care" {{ $child->status == 'Home Based Care' ? 'selected' : '' }}>HomeBased</option>
+                                <option value="Temporal Placement" {{ $child->status == 'emporal Placement' ? 'selected' : '' }}>Temporal Placement</option>
                             </select>
                             <label for="status">Status</label>
                         </div>

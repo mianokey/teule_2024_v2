@@ -59,7 +59,7 @@ use Carbon\Carbon;
         <div class="popover-content-inner">
           <div class="row">
             <div class="col-md-4">
-              <img src="{{ asset('storage/' . $child->img_url) }}" alt="Profile Image">
+              <img src="{{ asset($child->img_url) }}" alt="Profile Image">
             </div>
             <div class="col-md-8">
               <h5 class="title"><b><u>Meet {{ Str::ucfirst(strtolower($child->name)) }}</u></b></h5>
@@ -82,11 +82,13 @@ use Carbon\Carbon;
       <div class="col-sm-6 col-lg-3">
         <div class="team-item">
           <div class="top">
-            <img src="{{ asset('storage/' . $child->img_url) }}" alt="{{ $child->name }} image" />
+
+            <img  src="{{ asset($child->img_url) }}" alt="{{ $child->name }} image" />
           </div>
           <div class="bottom">
             <h4>{{ Str::ucfirst(strtolower($child->name)) }}</h4>
             <span class="mb-2">{{ $child->age}}</span>
+            <span class="mb-2"><b class="text-dark">CATEGORY: </b>{{ $child->status}}</span>
             <button data-fancybox="popover" data-src="#cont_{{ $child->id }}" class="sponsor_btn">More details/Sponsor</button>
           </div>
         </div>

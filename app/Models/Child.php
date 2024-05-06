@@ -9,7 +9,7 @@ class Child extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'dob', 'profile', 'img_url'];
+    protected $fillable = ['name', 'dob', 'img_url','status'];
 
     public function details()
     {
