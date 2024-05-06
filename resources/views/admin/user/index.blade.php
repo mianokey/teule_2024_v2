@@ -23,7 +23,13 @@
                 <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->details->where('key', 'position')->first()->value }}</td>
+                    <td>
+                        @if ($user->details && $user->details->where('key', 'position')->first())
+                            {{ $user->details->where('key', 'position')->first()->value }}
+                        @else
+                            No position found
+                        @endif
+                    </td>
                     <td>
                         @php
                             $imgUrl = $user->details->where('key', 'img_url')->first();

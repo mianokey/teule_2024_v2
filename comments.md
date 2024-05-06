@@ -76,8 +76,6 @@
 ## END OF resources/views/admin/children/index.blade.php
 ## resources/views/admin/children/edit.blade.php
 ## END OF resources/views/admin/children/edit.blade.php
-## resources/views/admin/user/index.blade.php
-## END OF resources/views/admin/user/index.blade.php
 ## resources/views/admin/user/edit.blade.php
 ## END OF resources/views/admin/user/edit.blade.php
 ## app/Http/Controllers/AdminController.php
@@ -94,7 +92,11 @@
 ## END OF resources/views/error.blade.php
 ## app/Http/Controllers/HomeController.php
 ## END OF app/Http/Controllers/HomeController.php
-
 ## resources/views/program.blade.php
-
 ## END OF resources/views/program.blade.php
+## resources/views/admin/user/index.blade.php
+## END OF resources/views/admin/user/index.blade.php
+
+## storage/logs/.gitignore
+
+## END OF storage/logs/.gitignore
