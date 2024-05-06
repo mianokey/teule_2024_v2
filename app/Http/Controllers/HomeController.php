@@ -47,6 +47,11 @@ class HomeController extends Controller
         return view('program');
     }
 
+    public function showErrorPage($errorMessage = '')
+    {
+        return view('error', ['message' => $errorMessage]);
+    }
+
     public function readmore($documentName)
     {
         // Get the path to the PDF file
@@ -67,16 +72,24 @@ class HomeController extends Controller
     }
 
     public function board()
-    {// Fetch users based on position from user_details table
-    $members = User::whereHas('details', function ($query) {
-        $query->where('key', 'position')
-            ->where(function ($subQuery) {
-                $subQuery->where('value', 'like', '%board%')
+    {
+        // Fetch users based on position from user_details table
+        $members = User::whereHas('details', function ($query) {
+            $query->where('key', 'position')
+                ->where(function ($subQuery) {
+                    $subQuery->where('value', 'like', '%board%')
                     ->orWhere('value', 'like', '%director%')
                     ->orWhere('value', 'like', '%founder%');
-            });
-    })
-    ->get();
+                });
+        })
+        ->get();
+        
+        // Check if there are members
+        if ($members->isEmpty()) {
+            // No members found, return with a message or redirect
+            $errorMessage = 'Unable to fetch board member details';
+            return view('error',compact('errorMessage'));
+        }
     
         // Process the retrieved data
         $processedMembers = [];
@@ -101,10 +114,6 @@ class HomeController extends Controller
         return view('board', compact('processedMembers'));
     }
     
-    
-
-    
-
      
     public function team()
     {

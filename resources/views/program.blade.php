@@ -8,13 +8,13 @@
     <div class="d-table-cell">
       <div class="container">
         <div class="title-item">
-          <h2>APPLICATIONS</h2>
+          <h2>OUR PROGRAM</h2>
           <ul>
             <li>
               <a href="{{route('home')}}">Home</a>
             </li>
             <li>
-              <span>Apply for Internship/Attachment </span>
+              <span>Teule Kenya Programs</span>
             </li>
           </ul>
         </div>

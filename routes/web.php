@@ -41,6 +41,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/readmore/{documentName}', [HomeController::class, 'readmore'])->name('readmore');
     Route::get('/aboutus_more', [HomeController::class, 'aboutus_home'])->name('aboutus_home');
     Route::get('/scholarship', [HomeController::class, 'scholarship'])->name('scholarship');
+    Route::get('/error', [HomeController::class, 'showErrorPage'])->name('error');
 });
 
 // Auth routes
