@@ -98,9 +98,9 @@
 ## END OF app/Models/Child.php
 ## resources/views/sponsorship.blade.php
 ## END OF resources/views/sponsorship.blade.php
-## app/Http/Controllers/HomeController.php
-## END OF app/Http/Controllers/HomeController.php
-
 ## resources/views/team.blade.php
-
 ## END OF resources/views/team.blade.php
+
+## app/Http/Controllers/HomeController.php
+
+## END OF app/Http/Controllers/HomeController.php

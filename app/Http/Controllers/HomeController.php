@@ -60,7 +60,7 @@ class HomeController extends Controller
         // Check if the file exists in storage
         if (Storage::disk('public')->exists($filePath)) {
             // Construct the URL to the PDF file
-            $pdfUrl = asset('storage/' . $filePath);
+            $pdfUrl = asset($filePath);
 
             // Render the view with the PDF URL and document name
             return view('readmore', compact('pdfUrl', 'documentName'));
@@ -78,17 +78,18 @@ class HomeController extends Controller
             $query->where('key', 'position')
                 ->where(function ($subQuery) {
                     $subQuery->where('value', 'like', '%board%')
-                    ->orWhere('value', 'like', '%director%')
-                    ->orWhere('value', 'like', '%founder%');
+                             ->orWhere('value', 'like', '%director%')
+                             ->orWhere('value', 'like', '%founder%');
                 });
         })
+        ->whereNull('email_verified_at') // Filter users with unverified email
         ->get();
         
         // Check if there are members
         if ($members->isEmpty()) {
             // No members found, return with a message or redirect
             $errorMessage = 'Unable to fetch board member details';
-            return view('error',compact('errorMessage'));
+            return view('error', compact('errorMessage'));
         }
     
         // Process the retrieved data
@@ -108,9 +109,6 @@ class HomeController extends Controller
             $processedMembers[] = $userData;
         }
     
-        // Log the processed members data
-        \Log::info('Processed Members Data:', $processedMembers);
-    
         return view('board', compact('processedMembers'));
     }
     
@@ -125,6 +123,7 @@ class HomeController extends Controller
                              ->orWhere('value', 'like', '%founder%');
                 });
         })
+        ->whereNull('email_verified_at') // Filter users with unverified email
         ->get();
         
         // Check if there are members
@@ -150,11 +149,9 @@ class HomeController extends Controller
             // Add user data to processed members array
             $processedMembers[] = $userData;
         }
+    
         return view('team', compact('processedMembers'));
     }
-    
-    
-   
     
     public function sustainability()
     {
