@@ -100,7 +100,9 @@
 ## END OF resources/views/sponsorship.blade.php
 ## resources/views/team.blade.php
 ## END OF resources/views/team.blade.php
-
 ## app/Http/Controllers/HomeController.php
-
 ## END OF app/Http/Controllers/HomeController.php
+
+## resources/views/auth/login.blade.php
+
+## END OF resources/views/auth/login.blade.php
