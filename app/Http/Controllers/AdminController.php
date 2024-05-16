@@ -168,7 +168,7 @@ class AdminController extends Controller
         }
 
         // Redirect back to a success page or somewhere else
-        return redirect()->route('children.index')->with('success', 'Child record updated successfully!');
+        return redirect()->back()->with('success', 'Child record updated successfully!');
     }
 
     public function showSystemDetails()

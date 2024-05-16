@@ -60,8 +60,8 @@
 ## END OF resources/views/layouts/admin.blade.php
 ## resources/views/admin/user/create.blade.php
 ## END OF resources/views/admin/user/create.blade.php
-## .gitignore
-## END OF .gitignore
+
+
 ## public/storage/.gitignore
 ## END OF public/storage/.gitignore
 ## resources/views/admin/children/index.blade.php
@@ -86,14 +86,10 @@
 ## END OF resources/views/board.blade.php
 ## resources/views/admin/newchild/index.blade.php
 ## END OF resources/views/admin/newchild/index.blade.php
-## resources/views/admin/children/edit.blade.php
-## END OF resources/views/admin/children/edit.blade.php
 ## database/migrations/2024_04_19_085131_create_children_table.php
 ## END OF database/migrations/2024_04_19_085131_create_children_table.php
 ## storage/logs/laravel.log
 ## END OF storage/logs/laravel.log
-## app/Http/Controllers/AdminController.php
-## END OF app/Http/Controllers/AdminController.php
 ## app/Models/Child.php
 ## END OF app/Models/Child.php
 ## resources/views/sponsorship.blade.php
@@ -102,7 +98,13 @@
 ## END OF resources/views/team.blade.php
 ## app/Http/Controllers/HomeController.php
 ## END OF app/Http/Controllers/HomeController.php
-
 ## resources/views/auth/login.blade.php
-
 ## END OF resources/views/auth/login.blade.php
+## resources/views/admin/children/edit.blade.php
+## END OF resources/views/admin/children/edit.blade.php
+## app/Http/Controllers/AdminController.php
+## END OF app/Http/Controllers/AdminController.php
+
+## .gitignore
+
+## END OF .gitignore
