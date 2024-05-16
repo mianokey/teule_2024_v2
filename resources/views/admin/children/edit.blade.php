@@ -61,6 +61,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
+                            
                             <img src="{{ asset($child->img_url) }}"  height="150" alt="{{ $child->name }} image" />
                              </div>
                     </div>

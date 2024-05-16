@@ -60,8 +60,6 @@
 ## END OF resources/views/layouts/admin.blade.php
 ## resources/views/admin/user/create.blade.php
 ## END OF resources/views/admin/user/create.blade.php
-
-
 ## public/storage/.gitignore
 ## END OF public/storage/.gitignore
 ## resources/views/admin/children/index.blade.php
@@ -100,11 +98,13 @@
 ## END OF app/Http/Controllers/HomeController.php
 ## resources/views/auth/login.blade.php
 ## END OF resources/views/auth/login.blade.php
-## resources/views/admin/children/edit.blade.php
-## END OF resources/views/admin/children/edit.blade.php
+
+
 ## app/Http/Controllers/AdminController.php
 ## END OF app/Http/Controllers/AdminController.php
-
 ## .gitignore
-
 ## END OF .gitignore
+
+## resources/views/admin/children/edit.blade.php
+
+## END OF resources/views/admin/children/edit.blade.php
