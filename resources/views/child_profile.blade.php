@@ -74,8 +74,9 @@ use Carbon\Carbon;
                             <div class="col-lg-12">
                                 <div class="card mb-4">
                                     <div class="card-body text-center">
-                                        <img src="{{ asset($child->img_url) }}" alt="avatar"
-                                            class="rounded-circle img-fluid" style="width: 150px;">
+                                        <a href="{{ asset($child->img_url) }}" data-lightbox="profile-image">
+                                            <img src="{{ asset($child->img_url) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                                        </a>
                                         <h5 class="my-3">{{ $child->name }}</h5>
                                         <p class="text-muted mb-1">CURRENT GRADE:
                                             {{ $child->details->firstWhere('key', 'current_grade')->value ?? '---' }}

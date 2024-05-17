@@ -94,8 +94,6 @@
 ## END OF app/Providers/AppServiceProvider.php
 ## resources/views/admin/newchild/index.blade.php
 ## END OF resources/views/admin/newchild/index.blade.php
-## resources/views/sponsorship.blade.php
-## END OF resources/views/sponsorship.blade.php
 ## resources/views/error.blade.php
 ## END OF resources/views/error.blade.php
 ## resources/views/admin/children/edit.blade.php
@@ -112,7 +110,9 @@
 ## END OF app/Http/Controllers/AdminController.php
 ## app/Http/Controllers/HomeController.php
 ## END OF app/Http/Controllers/HomeController.php
-
 ## resources/views/child_profile.blade.php
-
 ## END OF resources/views/child_profile.blade.php
+
+## resources/views/sponsorship.blade.php
+
+## END OF resources/views/sponsorship.blade.php
