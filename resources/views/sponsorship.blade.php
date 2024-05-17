@@ -68,7 +68,9 @@ use Carbon\Carbon;
               <h6><b><u>Other Details:</u></b></h6>
               @if ($child->details)
                     @foreach ($child->details as $detail)
+                    @if ($detail->key !== 'current_grade' && $detail->key !== 'sponsors')
                     <p><b>{{ $detail->key }}:</b> {{ $detail->value }}</p>
+                    @endif
                     @endforeach
                 @else
                     <p>no details </p>

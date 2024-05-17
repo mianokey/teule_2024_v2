@@ -78,9 +78,7 @@ use Carbon\Carbon;
                                             <img src="{{ asset($child->img_url) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                         </a>
                                         <h5 class="my-3">{{ $child->name }}</h5>
-                                        <p class="text-muted mb-1">CURRENT GRADE:
-                                            {{ $child->details->firstWhere('key', 'current_grade')->value ?? '---' }}
-                                        </p>
+                                       
                                         <div class="d-flex justify-content-center mb-2">
                                             <a href="{{ route('donate') }}"><button type="button"
                                                     data-mdb-button-init data-mdb-ripple-init
@@ -148,6 +146,15 @@ use Carbon\Carbon;
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
+                                        <p class="mb-0">CURRENT GRADE</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{ $child->details->firstWhere('key', 'current_grade')->value ?? '---' }}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
                                         <p class="mb-0">PROGRAM</p>
                                     </div>
                                     <div class="col-sm-9">
@@ -162,7 +169,7 @@ use Carbon\Carbon;
                                     <div class="col-sm-9">
                                         @if ($child->details)
                                         @foreach ($child->details as $detail)
-                                        @if ($detail->key !== 'current_grade')
+                                        @if ($detail->key !== 'current_grade' && $detail->key !== 'sponsors')
                                         <p><b>{{ $detail->key }}:</b> {{ $detail->value }}</p>
                                         @endif
                                         @endforeach
