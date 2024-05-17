@@ -90,21 +90,29 @@
 ## END OF storage/logs/laravel.log
 ## app/Models/Child.php
 ## END OF app/Models/Child.php
-## resources/views/sponsorship.blade.php
-## END OF resources/views/sponsorship.blade.php
 ## resources/views/team.blade.php
 ## END OF resources/views/team.blade.php
-## app/Http/Controllers/HomeController.php
-## END OF app/Http/Controllers/HomeController.php
 ## resources/views/auth/login.blade.php
 ## END OF resources/views/auth/login.blade.php
-
-
 ## app/Http/Controllers/AdminController.php
 ## END OF app/Http/Controllers/AdminController.php
 ## .gitignore
 ## END OF .gitignore
-
 ## resources/views/admin/children/edit.blade.php
-
 ## END OF resources/views/admin/children/edit.blade.php
+## public/assets/js/custom.js
+## END OF public/assets/js/custom.js
+## public/assets/css/custom.css
+## END OF public/assets/css/custom.css
+## resources/views/layouts/app.blade.php
+## END OF resources/views/layouts/app.blade.php
+## app/Http/Controllers/HomeController.php
+## END OF app/Http/Controllers/HomeController.php
+
+
+## app/Providers/AppServiceProvider.php
+## END OF app/Providers/AppServiceProvider.php
+
+## resources/views/sponsorship.blade.php
+
+## END OF resources/views/sponsorship.blade.php

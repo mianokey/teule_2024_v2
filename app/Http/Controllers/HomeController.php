@@ -214,7 +214,7 @@ class HomeController extends Controller
             }])
             ->with(['details', 'sponsorDetailsCount', 'otherDetails'])
             ->orderBy('sponsor_count', 'asc')
-            ->paginate(10);
+            ->paginate(3);
     
         // Calculate age for each child
         foreach ($children as $child) {

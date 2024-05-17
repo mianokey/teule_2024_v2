@@ -263,13 +263,23 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    // Initialize Fancybox for elements with the 'popover' class
-    $('#sposn-fancybox"]').fancybox({
+$(document).ready(function() {
+    $("#sposn-fancybox").fancybox({
         type: "inline", // Specify that the content is HTML
-        touch: false, // Disable touch gestures for better popover experience on desktop
+        touch: false,// Disable touch gestures for better popover experience on desktop
+        arrows: true, 
+        buttons: [
+            "zoom",
+            "share",
+            "slideShow",
+            "fullScreen",
+            "download",
+            "thumbs",
+            "close"
+        ]
     });
 });
+
 
 // Function to show the loader
 function showLoader() {

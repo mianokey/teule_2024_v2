@@ -94,7 +94,9 @@ use Carbon\Carbon;
         </div>
       </div>
       @endforeach
-      {{ $children->links() }}
+{{ $children->links() }}
+      
+      
     </div>
   </div>
 </section>
