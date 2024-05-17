@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -89,11 +90,20 @@ class AdminController extends Controller
 
     public function children_list()
     {
-        // Retrieve a list of children with their details
-        $children = Child::with('details')->get();
-
-        // Pass the data to a view
-        return view('admin.children.index', compact('children'));
+     // Retrieve a list of children with their details
+            $children = Child::with('details')->get();
+        
+            
+            // Generate a unique token for each child
+            foreach ($children as $child) {
+                $salt = Str::random(10); // 10 characters random string as salt
+                $encodedId = base64_encode($child->id . $salt);
+                $child->encoded_id = $encodedId; // Assign dynamically
+            }
+        
+            // Pass the data to a view
+            return view('admin.children.index', compact('children'));
+ 
     }
 
 

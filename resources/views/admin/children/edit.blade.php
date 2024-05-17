@@ -63,7 +63,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="sponsors" name="sponsors" value="{{ $child->details->where('key', 'sponsors')->first()->value ?? '' }}" placeholder="Sponsors">
+                            <input type="text" class="form-control" id="sponsors" name="sponsors" value="{{ $child->details->where('key', 'sponsors')->first()->value ?? '0' }}" placeholder="Sponsors">
                             <label for="Sponsors">Sponsors</label>
                         </div>
                     </div>

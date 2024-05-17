@@ -56,8 +56,6 @@
 ## END OF resources/views/admin/system_details/index.blade.php
 ## app/Models/User.php
 ## END OF app/Models/User.php
-## resources/views/layouts/admin.blade.php
-## END OF resources/views/layouts/admin.blade.php
 ## resources/views/admin/user/create.blade.php
 ## END OF resources/views/admin/user/create.blade.php
 ## public/storage/.gitignore
@@ -92,25 +90,29 @@
 ## END OF public/assets/js/custom.js
 ## public/assets/css/custom.css
 ## END OF public/assets/css/custom.css
-## resources/views/layouts/app.blade.php
-## END OF resources/views/layouts/app.blade.php
 ## app/Providers/AppServiceProvider.php
 ## END OF app/Providers/AppServiceProvider.php
 ## resources/views/admin/newchild/index.blade.php
 ## END OF resources/views/admin/newchild/index.blade.php
-## resources/views/admin/children/edit.blade.php
-## END OF resources/views/admin/children/edit.blade.php
-## app/Http/Controllers/AdminController.php
-## END OF app/Http/Controllers/AdminController.php
 ## resources/views/sponsorship.blade.php
 ## END OF resources/views/sponsorship.blade.php
-## routes/web.php
-## END OF routes/web.php
 ## resources/views/error.blade.php
 ## END OF resources/views/error.blade.php
+## resources/views/admin/children/edit.blade.php
+## END OF resources/views/admin/children/edit.blade.php
+## resources/views/layouts/app.blade.php
+## END OF resources/views/layouts/app.blade.php
+## resources/views/layouts/admin.blade.php
+## END OF resources/views/layouts/admin.blade.php
+## resources/views/admin/children/index.blade.php
+## END OF resources/views/admin/children/index.blade.php
+## routes/web.php
+## END OF routes/web.php
+## app/Http/Controllers/AdminController.php
+## END OF app/Http/Controllers/AdminController.php
 ## app/Http/Controllers/HomeController.php
 ## END OF app/Http/Controllers/HomeController.php
 
-## resources/views/admin/children/index.blade.php
+## resources/views/child_profile.blade.php
 
-## END OF resources/views/admin/children/index.blade.php
+## END OF resources/views/child_profile.blade.php

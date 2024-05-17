@@ -16,6 +16,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -241,6 +242,51 @@ class HomeController extends Controller
         }
     }
     
+
+   public function sponsorship_card($encodedId)
+{
+    try {
+        // Decode the encoded ID
+        $decodedId = base64_decode($encodedId);
+
+        // Extract the child ID from the decoded ID
+        $idParts = explode(Str::random(10), $decodedId);
+        $childId = $idParts[0];
+
+        // Retrieve the child using the decoded ID
+        $child = Child::find($childId);
+        
+        $dob = Carbon::parse($child->dob);
+            $now = Carbon::now();
+            // Calculate difference
+            $ageDiff = $now->diff($dob);
+            // Format age based on the difference
+            if ($ageDiff->y > 1) {
+                $age = $ageDiff->format('%y years old');
+            } elseif ($ageDiff->y == 1) {
+                $age = $ageDiff->format('%y year old');
+            } elseif ($ageDiff->m > 0) {
+                $age = $ageDiff->format('%m months old');
+            } else {
+                $age = $ageDiff->format('%d days old');
+            }
+            $child->age = $age;
+
+        if ($child) {
+            // If the child exists, display the sponsorship card view
+            return view('child_profile', compact('child'));
+        } else {
+            // If the child does not exist, redirect with an error message
+            $errorMessage = 'Child not found.';
+            return view('error', compact('errorMessage'));  
+        }
+    } catch (\Exception $e) {
+        // Handle any exceptions
+        $errorMessage = 'Error retrieving child.'.$child;
+        return view('error', compact('errorMessage'));
+    }
+}
+
     
 
     public function apply_intern()
