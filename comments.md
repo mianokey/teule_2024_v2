@@ -62,16 +62,10 @@
 ## END OF resources/views/admin/user/create.blade.php
 ## public/storage/.gitignore
 ## END OF public/storage/.gitignore
-## resources/views/admin/children/index.blade.php
-## END OF resources/views/admin/children/index.blade.php
 ## resources/views/admin/user/edit.blade.php
 ## END OF resources/views/admin/user/edit.blade.php
 ## app/Models/UserDetail.php
 ## END OF app/Models/UserDetail.php
-## routes/web.php
-## END OF routes/web.php
-## resources/views/error.blade.php
-## END OF resources/views/error.blade.php
 ## resources/views/program.blade.php
 ## END OF resources/views/program.blade.php
 ## storage/logs/.gitignore
@@ -82,8 +76,6 @@
 ## END OF resources/views/admin/user/index.blade.php
 ## resources/views/board.blade.php
 ## END OF resources/views/board.blade.php
-## resources/views/admin/newchild/index.blade.php
-## END OF resources/views/admin/newchild/index.blade.php
 ## database/migrations/2024_04_19_085131_create_children_table.php
 ## END OF database/migrations/2024_04_19_085131_create_children_table.php
 ## storage/logs/laravel.log
@@ -94,25 +86,31 @@
 ## END OF resources/views/team.blade.php
 ## resources/views/auth/login.blade.php
 ## END OF resources/views/auth/login.blade.php
-## app/Http/Controllers/AdminController.php
-## END OF app/Http/Controllers/AdminController.php
 ## .gitignore
 ## END OF .gitignore
-## resources/views/admin/children/edit.blade.php
-## END OF resources/views/admin/children/edit.blade.php
 ## public/assets/js/custom.js
 ## END OF public/assets/js/custom.js
 ## public/assets/css/custom.css
 ## END OF public/assets/css/custom.css
 ## resources/views/layouts/app.blade.php
 ## END OF resources/views/layouts/app.blade.php
-
-
 ## app/Providers/AppServiceProvider.php
 ## END OF app/Providers/AppServiceProvider.php
+## resources/views/admin/newchild/index.blade.php
+## END OF resources/views/admin/newchild/index.blade.php
+## resources/views/admin/children/edit.blade.php
+## END OF resources/views/admin/children/edit.blade.php
+## app/Http/Controllers/AdminController.php
+## END OF app/Http/Controllers/AdminController.php
 ## resources/views/sponsorship.blade.php
 ## END OF resources/views/sponsorship.blade.php
-
+## routes/web.php
+## END OF routes/web.php
+## resources/views/error.blade.php
+## END OF resources/views/error.blade.php
 ## app/Http/Controllers/HomeController.php
-
 ## END OF app/Http/Controllers/HomeController.php
+
+## resources/views/admin/children/index.blade.php
+
+## END OF resources/views/admin/children/index.blade.php

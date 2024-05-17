@@ -203,39 +203,42 @@ class HomeController extends Controller
         return response()->json($res);
     }
 
-
-    
     public function sponsorship()
     {
-        // Load children with their sponsor count and all details, ordered by sponsor count
-        $children = Child::whereNotIn('status', ['Inactive'])
-            ->withCount(['details as sponsor_count' => function ($query) {
-                $query->where('key', 'sponsor');
-            }])
-            ->with(['details', 'sponsorDetailsCount', 'otherDetails'])
-            ->orderBy('sponsor_count', 'asc')
-            ->paginate(8);
+        try {
+            // Load children with their sponsor count and all details, ordered by sponsor count
+            $children = Child::whereNotIn('status', ['Inactive'])
+                ->withCount(['details as sponsor_count' => function ($query) {
+                    $query->where('key', 'sponsor');
+                }])
+                ->orderByDesc('sponsor_count')
+                ->paginate(8);
     
-        // Calculate age for each child
-        foreach ($children as $child) {
-            $dob = Carbon::parse($child->dob);
-            $now = Carbon::now();
-            // Calculate difference
-            $ageDiff = $now->diff($dob);
-            // Format age based on the difference
-            if ($ageDiff->y > 1) {
-                $age = $ageDiff->format('%y years old');
-            } elseif ($ageDiff->y == 1) {
-                $age = $ageDiff->format('%y year old');
-            } elseif ($ageDiff->m > 0) {
-                $age = $ageDiff->format('%m months old');
-            } else {
-                $age = $ageDiff->format('%d days old');
+            // Calculate age for each child
+            foreach ($children as $child) {
+                $dob = Carbon::parse($child->dob);
+                $now = Carbon::now();
+                // Calculate difference
+                $ageDiff = $now->diff($dob);
+                // Format age based on the difference
+                if ($ageDiff->y > 1) {
+                    $age = $ageDiff->format('%y years old');
+                } elseif ($ageDiff->y == 1) {
+                    $age = $ageDiff->format('%y year old');
+                } elseif ($ageDiff->m > 0) {
+                    $age = $ageDiff->format('%m months old');
+                } else {
+                    $age = $ageDiff->format('%d days old');
+                }
+                $child->age = $age;
             }
-            $child->age = $age;
-        }
     
-        return view('sponsorship', compact('children'));
+            return view('sponsorship', compact('children'));
+        } catch (\Exception $e) {
+            // Handle the exception here
+            $errorMessage = 'Error retrieving data.';
+            return view('error', compact('errorMessage'));
+        }
     }
     
     

@@ -32,6 +32,7 @@ class AdminController extends Controller
             'hobbies' => 'required|string|max:255',
             'current_grade' => 'required|string|max:255',
             'aspirations' => 'required|string|max:255',
+            'sponsors' => 'required|int|max:11',
         ]);
 
         // Check if file upload was successful
@@ -57,6 +58,7 @@ class AdminController extends Controller
                         ['key' => 'hobbies', 'value' => $request->input('hobbies')],
                         ['key' => 'current_grade', 'value' => $request->input('current_grade')],
                         ['key' => 'aspirations', 'value' => $request->input('aspirations')],
+                        ['key' => 'sponsors', 'value' => $request->input('sponsors')],
                     ]);
 
                     // Redirect back to a success page or somewhere else
@@ -132,6 +134,7 @@ class AdminController extends Controller
             'hobbies' => 'required|string|max:255',
             'current_grade' => 'required|string|max:255',
             'aspirations' => 'required|string|max:255',
+            'sponsors' => 'required|int|max:255',
         ]);
 
         // Find the child record to update
@@ -160,6 +163,7 @@ class AdminController extends Controller
             'hobbies' => $request->input('hobbies'),
             'current_grade' => $request->input('current_grade'),
             'aspirations' => $request->input('aspirations'),
+            'sponsors' => $request->input('sponsors'),
             // Add more details here as needed
         ];
 

@@ -13,6 +13,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Date of Birth</th>
+                        <th>Sponsors</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -22,6 +23,7 @@
                         <tr>
                             <td>{{ $child->name }}</td>
                             <td>{{ $child->dob }}</td>
+                            <td>{{ $child->details->firstWhere('key', 'sponsors')->value ?? 'NOT STATED' }}</td>
                             <td>{{ $child->status }}</td>
                             <td>
                                 <button class="btn btn-info btn-sm mr-2 view-details-btn" data-name="{{ $child->name }}" data-dob="{{ $child->dob }}" data-status="{{ $child->status }}" data-details="{{ json_encode($child->details->pluck('value', 'key')) }}">View Details</button>

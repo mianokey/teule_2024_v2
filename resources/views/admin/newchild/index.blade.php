@@ -66,7 +66,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="sponsors" name="sponsors"
+                            value="{{ old('sponsors', 0) }}" placeholder="Number of Sponsors">
+                        <label for="sponsors">Sponsors</label>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
                     <div class="form-floating mb-3">
                         <input type="file" class="form-control" id="image" name="image">
                         <label for="img_url">UPLOAD IMAGE</label>

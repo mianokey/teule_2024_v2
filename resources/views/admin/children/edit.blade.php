@@ -51,12 +51,29 @@
                                 <option value="">Select One...</option>
                                 <option value="Inactive" {{ $child->status == 'Inactive' ? 'selected' : '' }}>Inactive (NOT IN CURRENT POPULATION)</option>
                                 <option value="Residential" {{ $child->status == 'Residential' ? 'selected' : '' }}>Residential</option>
-                                <option value="Home Based Care" {{ $child->status == 'Home Based Care' ? 'selected' : '' }}>HomeBased</option>
-                                <option value="Temporal Placement" {{ $child->status == 'emporal Placement' ? 'selected' : '' }}>Temporal Placement</option>
+                                <option value="Home Based Care" {{ $child->status == 'Home Based Care' ? 'selected' : '' }}>Home Based Care</option>
+                                <option value="Temporal Placement" {{ $child->status == 'Temporal Placement' ? 'selected' : '' }}>Temporal Placement</option>
                             </select>
                             <label for="status">Status</label>
                         </div>
                     </div>
+                    
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="sponsors" name="sponsors" value="{{ $child->details->where('key', 'sponsors')->first()->value ?? '' }}" placeholder="Sponsors">
+                            <label for="Sponsors">Sponsors</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="file" class="form-control" id="image" name="image">
+                            <label for="image">UPLOAD NEW IMAGE</label>
+                        </div>
+                    </div>
+                   
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -65,12 +82,7 @@
                             <img src="{{ asset($child->img_url) }}"  height="150" alt="{{ $child->name }} image" />
                              </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-floating mb-3">
-                            <input type="file" class="form-control" id="image" name="image">
-                            <label for="image">UPLOAD NEW IMAGE</label>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-12">
