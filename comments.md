@@ -106,13 +106,13 @@
 ## END OF public/assets/css/custom.css
 ## resources/views/layouts/app.blade.php
 ## END OF resources/views/layouts/app.blade.php
-## app/Http/Controllers/HomeController.php
-## END OF app/Http/Controllers/HomeController.php
 
 
 ## app/Providers/AppServiceProvider.php
 ## END OF app/Providers/AppServiceProvider.php
-
 ## resources/views/sponsorship.blade.php
-
 ## END OF resources/views/sponsorship.blade.php
+
+## app/Http/Controllers/HomeController.php
+
+## END OF app/Http/Controllers/HomeController.php
