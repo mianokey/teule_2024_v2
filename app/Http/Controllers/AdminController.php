@@ -96,8 +96,9 @@ class AdminController extends Controller
             
             // Generate a unique token for each child
             foreach ($children as $child) {
-                $salt = Str::random(10); // 10 characters random string as salt
-                $encodedId = base64_encode($child->id . $salt);
+                $delimiter = '|';
+                $randomString = Str::random(10); // This part is optional if you want additional security
+                $encodedId = base64_encode($child->id . $delimiter . $randomString);
                 $child->encoded_id = $encodedId; // Assign dynamically
             }
         

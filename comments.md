@@ -104,17 +104,17 @@
 ## END OF resources/views/layouts/admin.blade.php
 ## routes/web.php
 ## END OF routes/web.php
-## app/Http/Controllers/AdminController.php
-## END OF app/Http/Controllers/AdminController.php
-## app/Http/Controllers/HomeController.php
-## END OF app/Http/Controllers/HomeController.php
+
+
 ## resources/views/child_profile.blade.php
 ## END OF resources/views/child_profile.blade.php
-
-
 ## resources/views/admin/children/index.blade.php
 ## END OF resources/views/admin/children/index.blade.php
-
 ## resources/views/sponsorship.blade.php
-
 ## END OF resources/views/sponsorship.blade.php
+## app/Http/Controllers/AdminController.php
+## END OF app/Http/Controllers/AdminController.php
+
+## app/Http/Controllers/HomeController.php
+
+## END OF app/Http/Controllers/HomeController.php

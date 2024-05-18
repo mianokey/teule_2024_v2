@@ -243,49 +243,53 @@ class HomeController extends Controller
     }
     
 
-   public function sponsorship_card($encodedId)
-{
-    try {
-        // Decode the encoded ID
-        $decodedId = base64_decode($encodedId);
-
-        // Extract the child ID from the decoded ID
-        $idParts = explode(Str::random(10), $decodedId);
-        $childId = $idParts[0];
-
-        // Retrieve the child using the decoded ID
-        $child = Child::find($childId);
-        
-        $dob = Carbon::parse($child->dob);
-            $now = Carbon::now();
-            // Calculate difference
-            $ageDiff = $now->diff($dob);
-            // Format age based on the difference
-            if ($ageDiff->y > 1) {
-                $age = $ageDiff->format('%y years old');
-            } elseif ($ageDiff->y == 1) {
-                $age = $ageDiff->format('%y year old');
-            } elseif ($ageDiff->m > 0) {
-                $age = $ageDiff->format('%m months old');
+    public function sponsorship_card($encodedId)
+    {
+        try {
+            // Decode the encoded ID
+            $decodedString = base64_decode($encodedId);
+    
+            // Define the delimiter used during encoding
+            $delimiter = '|';
+    
+            // Extract the child ID from the decoded string
+            $idParts = explode($delimiter, $decodedString);
+            $childId = $idParts[0]; // The first part before the delimiter is the child ID
+    
+            // Retrieve the child using the decoded ID
+            $child = Child::find($childId);
+    
+            if ($child) {
+                // Calculate age
+                $dob = Carbon::parse($child->dob);
+                $now = Carbon::now();
+                $ageDiff = $now->diff($dob);
+    
+                if ($ageDiff->y > 1) {
+                    $age = $ageDiff->format('%y years old');
+                } elseif ($ageDiff->y == 1) {
+                    $age = $ageDiff->format('%y year old');
+                } elseif ($ageDiff->m > 0) {
+                    $age = $ageDiff->format('%m months old');
+                } else {
+                    $age = $ageDiff->format('%d days old');
+                }
+                $child->age = $age;
+    
+                // Display the sponsorship card view
+                return view('child_profile', compact('child'));
             } else {
-                $age = $ageDiff->format('%d days old');
+                // If the child does not exist, redirect with an error message
+                $errorMessage = 'Child not found.';
+                return view('error', compact('errorMessage'));
             }
-            $child->age = $age;
-
-        if ($child) {
-            // If the child exists, display the sponsorship card view
-            return view('child_profile', compact('child'));
-        } else {
-            // If the child does not exist, redirect with an error message
-            $errorMessage = 'Child not found.';
-            return view('error', compact('errorMessage'));  
+        } catch (\Exception $e) {
+            // Handle any exceptions
+            $errorMessage = 'Error retrieving child.';
+            return view('error', compact('errorMessage'));
         }
-    } catch (\Exception $e) {
-        // Handle any exceptions
-        $errorMessage = 'Error retrieving child.'.$child;
-        return view('error', compact('errorMessage'));
     }
-}
+    
 
     
 
