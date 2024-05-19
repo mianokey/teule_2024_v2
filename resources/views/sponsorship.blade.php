@@ -62,7 +62,7 @@ use Carbon\Carbon;
               <img src="{{ asset($child->img_url) }}" alt="Profile Image">
             </div>
             <div class="col-md-8">
-              <h5 class="title"><b><u>Meet {{ Str::ucfirst(strtolower($child->name)) }}</u></b></h5>
+              <h5 class="title"><b><u>Meet {{ Str::title(strtolower($child->name)) }}</u></b></h5>
               <p><b>Date of Birth:</b> {{ $child->dob }}</p>
               <p><b>Age:</b> {{ $child->age }}</p>
               <h6><b><u>Other Details:</u></b></h6>
@@ -88,7 +88,7 @@ use Carbon\Carbon;
             <img  src="{{ asset($child->img_url) }}" alt="{{ $child->name }} image" />
           </div>
           <div class="bottom">
-            <h4>{{ Str::ucfirst(strtolower($child->name)) }}</h4>
+            <h4>{{ Str::title(strtolower($child->name)) }}</h4>
             <span class="mb-2">{{ $child->age}}</span>
             <span class="mb-2"><b class="text-dark">CATEGORY: </b>{{ $child->status}}</span>
             <button data-fancybox="popover" data-src="#cont_{{ $child->id }}" class="sponsor_btn">More details/Sponsor</button>
