@@ -18,3 +18,5 @@ yarn-error.log
 
 # Ignore uploads folder
 public/uploads/
+
+comments.md

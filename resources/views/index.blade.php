@@ -58,7 +58,7 @@
                                             </span>
                                         </div>
                                         <div class="counter-content">
-                                            <h3>Children under Home based care</h3>
+                                            <h3>Children under Community based care</h3>
 
                                         </div>
                                     </div>

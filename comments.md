@@ -50,8 +50,8 @@
 ## END OF resources/views/admin/system_details/add.blade.php
 ## resources/views/admin/system_details/edit.blade.php
 ## END OF resources/views/admin/system_details/edit.blade.php
-## resources/views/index.blade.php
-## END OF resources/views/index.blade.php
+
+
 ## resources/views/admin/system_details/index.blade.php
 ## END OF resources/views/admin/system_details/index.blade.php
 ## app/Models/User.php
@@ -92,12 +92,8 @@
 ## END OF public/assets/css/custom.css
 ## app/Providers/AppServiceProvider.php
 ## END OF app/Providers/AppServiceProvider.php
-## resources/views/admin/newchild/index.blade.php
-## END OF resources/views/admin/newchild/index.blade.php
 ## resources/views/error.blade.php
 ## END OF resources/views/error.blade.php
-## resources/views/admin/children/edit.blade.php
-## END OF resources/views/admin/children/edit.blade.php
 ## resources/views/layouts/app.blade.php
 ## END OF resources/views/layouts/app.blade.php
 ## resources/views/layouts/admin.blade.php
@@ -112,7 +108,13 @@
 ## END OF app/Http/Controllers/AdminController.php
 ## app/Http/Controllers/HomeController.php
 ## END OF app/Http/Controllers/HomeController.php
-
 ## resources/views/sponsorship.blade.php
-
 ## END OF resources/views/sponsorship.blade.php
+## resources/views/admin/newchild/index.blade.php
+## END OF resources/views/admin/newchild/index.blade.php
+## resources/views/admin/children/edit.blade.php
+## END OF resources/views/admin/children/edit.blade.php
+
+## resources/views/index.blade.php
+
+## END OF resources/views/index.blade.php

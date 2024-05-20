@@ -57,7 +57,7 @@
                             <option value="">Select One...</option>
                             <option value="Inactive">Inactive(NOT IN CURRENT POPULATION)</option>
                             <option value="Residential">Residential</option>
-                            <option value="Home Based care">HomeBased</option>
+                            <option value="Community Based care">Community Based Care</option>
                             <option value="Temporal Placement">Temporal Placement</option>
 
                         </select>
