@@ -50,8 +50,6 @@
 ## END OF resources/views/admin/system_details/add.blade.php
 ## resources/views/admin/system_details/edit.blade.php
 ## END OF resources/views/admin/system_details/edit.blade.php
-
-
 ## resources/views/admin/system_details/index.blade.php
 ## END OF resources/views/admin/system_details/index.blade.php
 ## app/Models/User.php
@@ -114,7 +112,5 @@
 ## END OF resources/views/admin/newchild/index.blade.php
 ## resources/views/admin/children/edit.blade.php
 ## END OF resources/views/admin/children/edit.blade.php
-
 ## resources/views/index.blade.php
-
 ## END OF resources/views/index.blade.php

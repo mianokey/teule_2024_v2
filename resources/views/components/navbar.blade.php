@@ -87,7 +87,7 @@
                             <a href="{{route('tla')}}" class="nav-link">Teule Leadership Academy</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('latest')}}" class="nav-link">What's New</a>
+                            <a href="{{route('latest')}}" class="nav-link">Newsletters</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('sponsorship')}}" class="nav-link">Sponsor a child</a>

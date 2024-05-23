@@ -1,50 +1,39 @@
 @extends('layouts.app')
+
 @section('content')
 <x-header></x-header>
 <x-navbar></x-navbar>
+
 <div class="faq-area pt-100 mt-5 pb-70">
     <div class="container">
-    @foreach($latests as $latest)
-        <div class="row align-items-justified">
-
-            <div class="sust-reports-container col-lg-7">
-                <div class="sust-reports">
-                    <h4><b> {!! $latest->title !!}</b></h4>
-                    <h6>Update on:{{ \Carbon\Carbon::parse($latest->updated_at)->format('d-M-y H:i:s') }}</h6>
-                    <div style="text-align: justify;" class="mt-3">
-                        {!! $latest->description !!}
-                    </div>
+        <!-- Mailchimp Campaigns -->
+        <div class="card">
+            <div class="card-header">
+                <h3>Latest Newsletters</h3>
+            </div>
+            <div class="card-body">
+                <div class="display_archive">
+                    <style type="text/css">
+                        .display_archive {
+                            font-family: Arial, Verdana;
+                            font-size: 16px; /* Increased font size */
+                        }
+                        .campaign {
+                            line-height: 150%; /* Increased line height */
+                            margin: 10px; /* Increased margin */
+                        }
+                    </style>
+                    <script
+                        language="javascript"
+                        src="https://teulekenya.us8.list-manage.com/generate-js/?u=faccd5067c49396b3faf54e8f&show=10&fid=7961"
+                        type="text/javascript"
+                    ></script>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="testimonial-slider owl-theme owl-carousel">
-
-                @if(is_array($latest->image_links) && count($latest->image_links) > 0)
-                    @foreach($latest->image_links as $image)
-                    <div class="row align-items-center">
-                        <div class="col-lg-12">
-                            <div class="faq-img">
-                                <img src="{{ asset('uploads/latest/' . $image) }}" alt="Testimonial" style="height: 300px; width: 100%; object-fit: cover;">
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                    @endif
-                </div>
-            </div>
-         </div>
-    @endforeach
-
-    {{ $latests->links() }}
-         
+        </div>
+        <!-- End of Mailchimp Campaigns -->
     </div>
 </div>
+
 <x-footer></x-footer>
-<script>
-    function openPDF(event, link) {
-        event.preventDefault();
-        const pdfUrl = link.href;
-        window.open(pdfUrl, '_blank');
-    }
-</script>
 @endsection
