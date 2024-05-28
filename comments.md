@@ -96,8 +96,8 @@
 ## END OF resources/views/layouts/app.blade.php
 ## resources/views/layouts/admin.blade.php
 ## END OF resources/views/layouts/admin.blade.php
-## routes/web.php
-## END OF routes/web.php
+
+
 ## resources/views/child_profile.blade.php
 ## END OF resources/views/child_profile.blade.php
 ## resources/views/admin/children/index.blade.php

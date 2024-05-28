@@ -29,6 +29,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::post('/contact', [HomeController::class, 'contact_message'])->name('contact_message');
     Route::get('/sponsor', [HomeController::class, 'sponsorship'])->name('sponsorship');
+    Route::get('/sponsorship', [HomeController::class, 'sponsorship'])->name('sponsorship_old');
     Route::get('/child/profile/{id}', [HomeController::class, 'sponsorship_card'])->name('sponsorship_card');
     Route::get('/apply_internship', [HomeController::class, 'apply_intern'])->name('apply_intern');
     Route::post('/apply_internship', [HomeController::class, 'apply_intern_post'])->name('apply_intern_post');
