@@ -92,20 +92,14 @@
 ## END OF app/Providers/AppServiceProvider.php
 ## resources/views/error.blade.php
 ## END OF resources/views/error.blade.php
-## resources/views/layouts/app.blade.php
-## END OF resources/views/layouts/app.blade.php
 ## resources/views/layouts/admin.blade.php
 ## END OF resources/views/layouts/admin.blade.php
-
-
 ## resources/views/child_profile.blade.php
 ## END OF resources/views/child_profile.blade.php
 ## resources/views/admin/children/index.blade.php
 ## END OF resources/views/admin/children/index.blade.php
 ## app/Http/Controllers/AdminController.php
 ## END OF app/Http/Controllers/AdminController.php
-## app/Http/Controllers/HomeController.php
-## END OF app/Http/Controllers/HomeController.php
 ## resources/views/sponsorship.blade.php
 ## END OF resources/views/sponsorship.blade.php
 ## resources/views/admin/newchild/index.blade.php

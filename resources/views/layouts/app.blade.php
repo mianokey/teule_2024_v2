@@ -19,8 +19,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/theme-dark.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/birthday_animation.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
     <title>TEULE KENYA::CHOMBO CHA UPENDO</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/img/logo.png') }}">
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <!-- Optional: Bootstrap Icons CSS (for icons in nav pills) -->
@@ -40,6 +42,14 @@
             </div>
         </div>
     </div>
+    @if(($children ?? collect())->isNotEmpty() && !session('birthday_animation_shown') && (empty(session('birthday_animation_shown_expiry')) || session('birthday_animation_shown_expiry')->isPast()))
+    <div id="birthday-animation">
+        @include('birthday_animation', ['children' => $children ?? collect()])
+    </div>
+@endif
+
+
+
     @yield('content')
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
@@ -55,6 +65,7 @@
     <script src="{{asset('assets/js/jquery.appear.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script>
     <script src="{{asset('assets/js/custom.js')}}"></script>
+    <script src="{{asset('assets/js/birthday_animation.js')}}"></script>
     <script src="{{asset('assets/js/font-awesome.js')}}"></script>
 </body>
 

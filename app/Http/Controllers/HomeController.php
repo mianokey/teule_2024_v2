@@ -21,14 +21,22 @@ use Illuminate\Support\Str;
 class HomeController extends Controller
 {
 
+public function index()
+{
+    $systemDetails = SystemDetail::all();
+    $needItems = NeedItem::all();
+    $events = Event::all()->sortBy('date_from');
+    $today = Carbon::now()->format('m-d');  // Format date to match month and day
 
-    public function index()
-    {
-        $systemDetails = SystemDetail::all();
-        $needItems = NeedItem::all();
-        $events = Event::all()->sortBy('date_from');
-        return view('index', compact('systemDetails', 'needItems', 'events'));
-    }
+    $children = Child::with('details')
+        ->where('status', '!=', 'inactive')
+        ->whereRaw('DATE_FORMAT(dob, "%m-%d") = ?', [$today])
+        ->get();
+
+    return view('index', compact('systemDetails', 'needItems', 'events', 'children'));
+}
+
+
 
     public function donate()
     {
@@ -79,40 +87,40 @@ class HomeController extends Controller
             $query->where('key', 'position')
                 ->where(function ($subQuery) {
                     $subQuery->where('value', 'like', '%board%')
-                             ->orWhere('value', 'like', '%director%')
-                             ->orWhere('value', 'like', '%founder%');
+                        ->orWhere('value', 'like', '%director%')
+                        ->orWhere('value', 'like', '%founder%');
                 });
         })
-        ->whereNull('email_verified_at') // Filter users with unverified email
-        ->get();
-        
+            ->whereNull('email_verified_at') // Filter users with unverified email
+            ->get();
+
         // Check if there are members
         if ($members->isEmpty()) {
             // No members found, return with a message or redirect
             $errorMessage = 'Unable to fetch board member details';
             return view('error', compact('errorMessage'));
         }
-    
+
         // Process the retrieved data
         $processedMembers = [];
         foreach ($members as $member) {
             $userData = $member->toArray();
-    
+
             // Extract user details into a key-value array
             $userDetails = $member->details->pluck('value', 'key')->toArray();
-    
+
             // Append user details to user data
             foreach ($userDetails as $key => $value) {
                 $userData[$key] = $value;
             }
-    
+
             // Add user data to processed members array
             $processedMembers[] = $userData;
         }
-    
+
         return view('board', compact('processedMembers'));
     }
-    
+
     public function team()
     {
         // Fetch users who do not have positions containing the specified strings
@@ -120,40 +128,40 @@ class HomeController extends Controller
             $query->where('key', 'position')
                 ->where(function ($subQuery) {
                     $subQuery->where('value', 'like', '%board%')
-                             ->orWhere('value', 'like', '%director%')
-                             ->orWhere('value', 'like', '%founder%');
+                        ->orWhere('value', 'like', '%director%')
+                        ->orWhere('value', 'like', '%founder%');
                 });
         })
-        ->whereNull('email_verified_at') // Filter users with unverified email
-        ->get();
-        
+            ->whereNull('email_verified_at') // Filter users with unverified email
+            ->get();
+
         // Check if there are members
         if ($members->isEmpty()) {
             // No members found, return with a message or redirect
             $errorMessage = 'Unable to fetch team member details';
             return view('error', compact('errorMessage'));
         }
-    
+
         // Process the retrieved data
         $processedMembers = [];
         foreach ($members as $member) {
             $userData = $member->toArray();
-    
+
             // Extract user details into a key-value array
             $userDetails = $member->details->pluck('value', 'key')->toArray();
-    
+
             // Append user details to user data
             foreach ($userDetails as $key => $value) {
                 $userData[$key] = $value;
             }
-    
+
             // Add user data to processed members array
             $processedMembers[] = $userData;
         }
-    
+
         return view('team', compact('processedMembers'));
     }
-    
+
     public function sustainability()
     {
 
@@ -214,7 +222,7 @@ class HomeController extends Controller
                 }])
                 ->orderByDesc('sponsor_count')
                 ->paginate(8);
-    
+
             // Calculate age for each child
             foreach ($children as $child) {
                 $dob = Carbon::parse($child->dob);
@@ -233,7 +241,7 @@ class HomeController extends Controller
                 }
                 $child->age = $age;
             }
-    
+
             return view('sponsorship', compact('children'));
         } catch (\Exception $e) {
             // Handle the exception here
@@ -241,30 +249,30 @@ class HomeController extends Controller
             return view('error', compact('errorMessage'));
         }
     }
-    
+
 
     public function sponsorship_card($encodedId)
     {
         try {
             // Decode the encoded ID
             $decodedString = base64_decode($encodedId);
-    
+
             // Define the delimiter used during encoding
             $delimiter = '|';
-    
+
             // Extract the child ID from the decoded string
             $idParts = explode($delimiter, $decodedString);
             $childId = $idParts[0]; // The first part before the delimiter is the child ID
-    
+
             // Retrieve the child using the decoded ID
             $child = Child::find($childId);
-    
+
             if ($child) {
                 // Calculate age
                 $dob = Carbon::parse($child->dob);
                 $now = Carbon::now();
                 $ageDiff = $now->diff($dob);
-    
+
                 if ($ageDiff->y > 1) {
                     $age = $ageDiff->format('%y years old');
                 } elseif ($ageDiff->y == 1) {
@@ -275,7 +283,7 @@ class HomeController extends Controller
                     $age = $ageDiff->format('%d days old');
                 }
                 $child->age = $age;
-    
+
                 // Display the sponsorship card view
                 return view('child_profile', compact('child'));
             } else {
@@ -289,9 +297,9 @@ class HomeController extends Controller
             return view('error', compact('errorMessage'));
         }
     }
-    
 
-    
+
+
 
     public function apply_intern()
     {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnimationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SustainabilityController;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,8 @@ Route::middleware(['web'])->group(function () {
     Route::get('/aboutus_more', [HomeController::class, 'aboutus_home'])->name('aboutus_home');
     Route::get('/scholarship', [HomeController::class, 'scholarship'])->name('scholarship');
     Route::get('/error', [HomeController::class, 'showErrorPage'])->name('error');
-    
+    Route::post('/mark-animation-shown', [AnimationController::class, 'markAnimationShown'])->name('mark-animation-shown');
+
 });
 
 // Auth routes
