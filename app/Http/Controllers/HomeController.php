@@ -21,20 +21,24 @@ use Illuminate\Support\Str;
 class HomeController extends Controller
 {
 
-public function index()
-{
-    $systemDetails = SystemDetail::all();
-    $needItems = NeedItem::all();
-    $events = Event::all()->sortBy('date_from');
-    $today = Carbon::now()->format('m-d');  // Format date to match month and day
-
-    $children = Child::with('details')
+    public function index()
+    {
+      $systemDetails = SystemDetail::all();
+      $needItems = NeedItem::all();
+      $events = Event::all()->sortBy('date_from');
+    
+      // Set timezone to Nairobi, Kenya
+      Carbon::setLocale('en_KE'); // This sets the locale for formatting
+    
+      $today = Carbon::now('Africa/Nairobi')->format('m-d'); 
+    
+      $children = Child::with('details')
         ->where('status', '!=', 'inactive')
         ->whereRaw('DATE_FORMAT(dob, "%m-%d") = ?', [$today])
         ->get();
-
-    return view('index', compact('systemDetails', 'needItems', 'events', 'children'));
-}
+    
+      return view('index', compact('systemDetails', 'needItems', 'events', 'children'));
+    }
 
 
 
