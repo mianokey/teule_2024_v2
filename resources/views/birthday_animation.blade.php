@@ -3,15 +3,12 @@
         <div class="card-header text-center">
             <h6 class="m-2">Join us in Celebrating the Birthdays of Our Precious Little Ones Today</h6>
         </div>
-        <div class="card-body">
+        <div style="width: auto;max-height:500px;overflow-x:auto;" class="card-body">
             <button id="close-animation" class="position-absolute top-0 end-0">&times;</button> <!-- Close icon inside card -->
             <div class="row justify-content-center" id="child-cards-container">
-                @php
-                    $totalChildren = count($children);
-                    $colSize = $totalChildren > 3 ? 'col-md-4' : 'col-md-' . (12 / $totalChildren);
-                @endphp
+              
                 @foreach($children as $child)
-                    <div class="{{ $colSize }} mb-3 d-flex justify-content-center">
+                    <div class="col-md-4 mb-3 d-flex justify-content-center">
                         <div class="child-card text-center p-3 border rounded">
                             <img src="{{ $child->img_url }}" alt="{{ $child->name }}" class="img-fluid rounded-circle mb-2">
                             <h6>{{ $child->name }}</h6>
