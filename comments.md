@@ -106,5 +106,3 @@
 ## END OF resources/views/admin/newchild/index.blade.php
 ## resources/views/admin/children/edit.blade.php
 ## END OF resources/views/admin/children/edit.blade.php
-## resources/views/index.blade.php
-## END OF resources/views/index.blade.php

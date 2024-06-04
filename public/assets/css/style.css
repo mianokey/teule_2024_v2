@@ -594,7 +594,7 @@ ul {
     background-attachment: fixed
 }
 
-.banner-area:before {
+/* .banner-area:before {
     position: absolute;
     content: '';
     width: 100%;
@@ -603,7 +603,7 @@ ul {
     left: 0;
     background: linear-gradient(-90deg, #ffffff, yellow);
     opacity: 0.8;
-}
+} */
 
 .banner-area .banner-img {
     position: relative;

@@ -42,11 +42,11 @@
             </div>
         </div>
     </div>
-    @if(($children ?? collect())->isNotEmpty() && !session('birthday_animation_shown') && (empty(session('birthday_animation_shown_expiry')) || session('birthday_animation_shown_expiry')->isPast()))
+    {{-- @if(($children ?? collect())->isNotEmpty() && !session('birthday_animation_shown') && (empty(session('birthday_animation_shown_expiry')) || session('birthday_animation_shown_expiry')->isPast()))
     <div id="birthday-animation">
         @include('birthday_animation', ['children' => $children ?? collect()])
     </div>
-@endif
+@endif --}}
 
 
 
