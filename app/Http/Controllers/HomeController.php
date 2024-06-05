@@ -32,12 +32,12 @@ class HomeController extends Controller
     
       $today = Carbon::now('Africa/Nairobi')->format('m-d'); 
     
-      $children = Child::with('details')
+      $children_dob = Child::with('details')
         ->where('status', '!=', 'inactive')
         ->whereRaw('DATE_FORMAT(dob, "%m-%d") = ?', [$today])
         ->get();
     
-      return view('index', compact('systemDetails', 'needItems', 'events', 'children'));
+      return view('index', compact('systemDetails', 'needItems', 'events', 'children_dob'));
     }
 
 
