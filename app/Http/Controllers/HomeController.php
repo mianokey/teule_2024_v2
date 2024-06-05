@@ -26,18 +26,7 @@ class HomeController extends Controller
       $systemDetails = SystemDetail::all();
       $needItems = NeedItem::all();
       $events = Event::all()->sortBy('date_from');
-    
-      // Set timezone to Nairobi, Kenya
-      Carbon::setLocale('en_KE'); // This sets the locale for formatting
-    
-      $today = Carbon::now('Africa/Nairobi')->format('m-d'); 
-    
-      $children_dob = Child::with('details')
-        ->where('status', '!=', 'inactive')
-        ->whereRaw('DATE_FORMAT(dob, "%m-%d") = ?', [$today])
-        ->get();
-    
-      return view('index', compact('systemDetails', 'needItems', 'events', 'children_dob'));
+      return view('index', compact('systemDetails', 'needItems', 'events'));
     }
 
 

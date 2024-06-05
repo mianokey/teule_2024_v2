@@ -88,8 +88,6 @@
 ## END OF public/assets/js/custom.js
 ## public/assets/css/custom.css
 ## END OF public/assets/css/custom.css
-## app/Providers/AppServiceProvider.php
-## END OF app/Providers/AppServiceProvider.php
 ## resources/views/error.blade.php
 ## END OF resources/views/error.blade.php
 ## resources/views/layouts/admin.blade.php

@@ -2,16 +2,25 @@ function closeAnimation() {
     document.getElementById('birthday-animation').style.display = 'none';
 }
 
-function dontShowAgainToday() {
-     $.ajax({
-        url: '{{ route("mark-animation-shown") }}',
+  // Function to mark animation as shown for today and close it
+  function dontShowAgainToday() {
+    // Get the CSRF token value from the meta tag
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+    // Send AJAX request to mark animation as shown for today
+    $.ajax({
+        url: '/mark-animation-shown', // Use direct route URL
         type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token // Include CSRF token in headers
+        },
         success: function(response) {
             // Close the animation
             closeAnimation();
         }
     });
 }
+
 
 
 // Event listener for close button
@@ -218,24 +227,12 @@ document.getElementById('dont-show-again').addEventListener('click', dontShowAga
         document.getElementById('birthday-animation').style.display = 'none';
     }
 
-   // Function to mark animation as shown for today and close it
-function dontShowAgainToday() {
-    // Get the CSRF token value from the meta tag
-    var token = $('meta[name="csrf-token"]').attr('content');
+ 
 
-    // Send AJAX request to mark animation as shown for today
-    $.ajax({
-        url: '{{ route("mark-animation-shown") }}',
-        type: 'POST',
-        headers: {
-            'X-CSRF-TOKEN': token // Include CSRF token in headers
-        },
-        success: function(response) {
-            // Close the animation
-            closeAnimation();
-        }
-    });
+function closeAnimation() {
+    document.getElementById('birthday-animation').style.display = 'none';
 }
+
 
 
     // Event listener for close button
@@ -244,22 +241,3 @@ function dontShowAgainToday() {
     // Event listener for "Don't show again today" button
     document.getElementById('dont-show-again').addEventListener('click', dontShowAgainToday);
 
-
-    // Function to mark animation as shown for today and close it
-    function dontShowAgainToday() {
-        // Get the CSRF token value from the meta tag
-        var token = $('meta[name="csrf-token"]').attr('content');
-
-        // Send AJAX request to mark animation as shown for today
-        $.ajax({
-            url: "{{ route('mark-animation-shown') }}", // Ensure this script is in a .blade.php file
-            type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': token // Include CSRF token in headers
-            },
-            success: function(response) {
-                // Close the animation
-                closeAnimation();
-            }
-        });
-    }
